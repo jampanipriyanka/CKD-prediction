@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chronic Kidney Disease Prediction</title>
     <style>
         body {
@@ -59,7 +61,6 @@
             margin: 20px 0;
             cursor: pointer;
             border-radius: 5px;
-            width: 10%;
             box-sizing: border-box;
         }
 
@@ -76,16 +77,26 @@
             
         }
         
-        
+        #hideafter30sec {
+            animation: hideAnimation 0s ease-in 10s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes hideAnimation {
+        to {
+            visibility: hidden;
+            width: 0;
+            height: 0;
+        }
+        }
     </style>
 </head>
 <body>
     <h1>Chronic Kidney Disease Prediction</h1>
     <div class="container">
 
-        <form id="form">
+        <form id="form" action="{{ url_for('predict')}}" method="POST">
             <label for="id">ID:</label>
-            <input type="text" id="id" name="id" required><br />
+            <input type="text" id="id" name="id" required ><br />
             <label for="age">Age:</label>
             <input type="text" id="age" name="age" required><br />
 
@@ -102,27 +113,27 @@
             <label for="red-blood-cells">Red Blood Cells:</label>
             <select name="red-blood-cells" id="red-blood-cells">
                 <option value="">Select</option>
-                <option value="normal">Normal</option>
-                <option value="abnormal">Abnormal</option>
+                <option value=1 >Normal</option>
+                <option value=0 >Abnormal</option>
             </select><br />
             <label for="pus-cell">Pus Cell:</label>
             <select name="pus-cell" id="pus-cell">
                 <option value="">Select</option>
-                <option value="normal">Normal</option>
-                <option value="abnormal">Abnormal</option>
+                <option value=1 >Normal</option>
+                <option value=0 >Abnormal</option>
             </select><br />
 
             <label for="pus-cell-clumps">Pus Cell Clumps:</label>
             <select name="pus-cell-clumps" id="pus-cell-clumps">
                 <option value="">Select</option>
-                <option value="present">Present</option>
-                <option value="not-present">Not Present</option>
+                <option value=1 >Present</option>
+                <option value=0 >Not Present</option>
             </select><br />
             <label for="bacteria">Bacteria:</label>
             <select name="bacteria" id="bacteria">
                 <option value="">Select</option>
-                <option value="present">Present</option>
-                <option value="not-present">Not Present</option>
+                <option value=1 >Present</option>
+                <option value=0 >Not Present</option>
             </select><br />
             <label for="blood-glucose-random">Blood Glucose Random:</label>
             <input type="text" id="blood-glucose-random" name="blood-glucose-random" required><br />
@@ -151,42 +162,45 @@
             <label for="hypertension">Hypertension:</label>
             <select name="hypertension" id="hypertension">
                 <option value="">Select</option>
-                <option value="Yes">Present</option>
-                <option value="No">Not Present</option>
+                <option value=1 >Present</option>
+                <option value=0 >Not Present</option>
             </select><br />
             <label for="diabetes-mellitus">Diabetes Mellitus:</label>
             <select name="diabetes-mellitus" id="diabetes-mellitus">
                 <option value="">Select</option>
-                <option value="Yes">Present</option>
-                <option value="No">Not Present</option>
+                <option value=1 >Present</option>
+                <option value=0 >Not Present</option>
             </select><br />
             <label for="coronary-artery-diseases">Coronary Artery Diseases:</label>
             <select name="coronary-artery-diseases" id="coronary-artery-diseases">
                 <option value="">Select</option>
-                <option value="Yes">Present</option>
-                <option value="No">Not Present</option>
+                <option value=1 >Present</option>
+                <option value=0 >Not Present</option>
             </select><br />
             <label for="appetite">Appetite:</label>
             <select name="appetite" id="appetite">
                 <option value="">Select</option>
-                <option value="good">Good</option>
-                <option value="poor">Poor</option>
+                <option value=1 >Good</option>
+                <option value=0 >Poor</option>
             </select><br />
             <label for="pedal-edema">Pedal Edema:</label>
             <select name="pedal-edema" id="pedal-edema">
                 <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value=1 >Yes</option>
+                <option value=0 >No</option>
             </select><br />
 
+            <button type="submit" id="submit-btn">Predict</button><br/>
+
+           
         </form>
-
-        <p id="result"></p>
+        <div class="result" id="hideafter30sec">
+            {% if prediction_text == '0'%}
+            <h2 style="color:red;">Patience does not have CKD</h2>
+            {% elif prediction_text == '1'%}
+            <h2 style="color:green;"><b>Patience is having CKD</b></h2>
+            {% endif %}
+        </div>
     </div>
-    <div class="btn">
-    <button type="submit" id="submit-btn">Predict</button><br/>
-    <button type="button" id="cancel-btn">Close</button>
-    </div>
-
 </body>
 </html>
