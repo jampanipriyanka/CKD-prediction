@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chronic Kidney Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+           
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px;
+            column-count:3;
+             
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            color:brown;
+            width:800px;
+        }
+
+        label {
+            display: inline-block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            width: 250px;
+            color:darkgreen
+        }
+
+        input[type="text"],
+        select {
+            font-size: 15px;
+            padding: 10px;
+            width: 30%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #0000FF;
+            box-sizing: border-box;
+            text-align: center;
+            
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 10%;
+            box-sizing: border-box;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        #cancel-btn {
+            background-color: #FF0000;
+
+        }
+        .btn {
+            text-align:center;
+            
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Chronic Kidney Disease Prediction</h1>
+    <div class="container">
+
+        <form id="form">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required><br />
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required><br />
+
+            <label for="blood_pressure">Blood Pressure:</label>
+            <input type="text" id="blood_pressure" name="blood_pressure" required><br />
+
+            <label for="specific_gravity">Specific Gravity:</label>
+            <input type="text" id="specific_gravity" name="specific_gravity" required><br />
+            <label for="albumin">Albumin:</label>
+            <input type="text" id="albumin" name="albumin" required><br />
+            <label for="sugar">Sugar:</label>
+            <input type="text" id="sugar" name="sugar" required><br />
+
+            <label for="red-blood-cells">Red Blood Cells:</label>
+            <select name="red-blood-cells" id="red-blood-cells">
+                <option value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="abnormal">Abnormal</option>
+            </select><br />
+            <label for="pus-cell">Pus Cell:</label>
+            <select name="pus-cell" id="pus-cell">
+                <option value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="abnormal">Abnormal</option>
+            </select><br />
+
+            <label for="pus-cell-clumps">Pus Cell Clumps:</label>
+            <select name="pus-cell-clumps" id="pus-cell-clumps">
+                <option value="">Select</option>
+                <option value="present">Present</option>
+                <option value="not-present">Not Present</option>
+            </select><br />
+            <label for="bacteria">Bacteria:</label>
+            <select name="bacteria" id="bacteria">
+                <option value="">Select</option>
+                <option value="present">Present</option>
+                <option value="not-present">Not Present</option>
+            </select><br />
+            <label for="blood-glucose-random">Blood Glucose Random:</label>
+            <input type="text" id="blood-glucose-random" name="blood-glucose-random" required><br />
+
+            <label for="blood-urea">Blood Urea:</label>
+            <input type="text" id="blood-urea" name="blood-urea" required><br />
+
+            <label for="serum-creatinine">Serium Creatinine:</label>
+            <input type="text" id="serum-creatinine" name="serum-creatinine" required><br />
+            <label for="sodium">Sodium:</label>
+            <input type="text" id="sodium" name="sodium" required><br />
+            <label for="potassium">Potassium:</label>
+            <input type="text" id="potassium" name="potassium" required><br />
+
+            <label for="hemoglobin">Hemo Globin:</label>
+            <input type="text" id="hemoglobin" name="hemoglobin" required><br />
+
+            <label for="anemia">Anemia:</label>
+            <input type="text" id="anemia" name="anemia" required><br />
+            <label for="packed-cell-volume">Packed Cell Volume:</label>
+            <input type="text" id="packed-cell-volume" name="packed-cell-volume" required><br />
+            <label for="white-blood-cell-count">White Blood Cell Count:</label>
+            <input type="text" id="white-blood-cell-count" name="white-blood-cell-count" required><br />
+            <label for="red-blood-cell-count">Red Blood Cell Count:</label>
+            <input type="text" id="red-blood-cell-count" name="red-blood-cell-count" required><br />
+            <label for="hypertension">Hypertension:</label>
+            <select name="hypertension" id="hypertension">
+                <option value="">Select</option>
+                <option value="Yes">Present</option>
+                <option value="No">Not Present</option>
+            </select><br />
+            <label for="diabetes-mellitus">Diabetes Mellitus:</label>
+            <select name="diabetes-mellitus" id="diabetes-mellitus">
+                <option value="">Select</option>
+                <option value="Yes">Present</option>
+                <option value="No">Not Present</option>
+            </select><br />
+            <label for="coronary-artery-diseases">Coronary Artery Diseases:</label>
+            <select name="coronary-artery-diseases" id="coronary-artery-diseases">
+                <option value="">Select</option>
+                <option value="Yes">Present</option>
+                <option value="No">Not Present</option>
+            </select><br />
+            <label for="appetite">Appetite:</label>
+            <select name="appetite" id="appetite">
+                <option value="">Select</option>
+                <option value="good">Good</option>
+                <option value="poor">Poor</option>
+            </select><br />
+            <label for="pedal-edema">Pedal Edema:</label>
+            <select name="pedal-edema" id="pedal-edema">
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select><br />
+
+        </form>
+
+        <p id="result"></p>
+    </div>
+    <div class="btn">
+    <button type="submit" id="submit-btn">Predict</button><br/>
+    <button type="button" id="cancel-btn">Close</button>
+    </div>
+
+</body>
+</html>
