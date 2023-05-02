@@ -34,12 +34,16 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    print(request.form.values())
-    int_feature=[float(x) for x in request.form.values()]
-    print(int_feature)
-    int_feature=int_feature[1:]
-    Final_features=[np.array(int_feature)]
-    predict=model.predict(Final_features)
+    items=request.form.items()
+    print(items)
+    x_train_head=['wc', 'bgr', 'bu', 'sc', 'pcv', 'al', 'hemo', 'age', 'su', 'htn']
+    array=['white-blood-cell-count','blood-glucose-random','blood-urea','serum-creatinine','packed-cell-volume','albumin','hemoglobin','age','sugar','hypertension']
+    int_feature={key:float(value) for key,value in request.form.items() }
+    print(int_feature) 
+    trainvalues={x:int_feature[x] for x in x_train_head}
+    print(trainvalues)
+    df=pd.DataFrame(trainvalues,x_train_head)
+    predict=model.predict(df)
     print(predict[0])
     return render_template('main.html',prediction_text="{}".format(predict[0]))
 
