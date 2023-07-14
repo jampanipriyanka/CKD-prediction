@@ -133,7 +133,7 @@
             </div>
             <div class="form_group">
             <label for="cholesterol">cholesterol:</label>
-            <select name="smoke" id="smoke">
+            <select name="cholesterol" id="cholesterol">
                 <option value="">Select</option>
                 <option value=1 >Normal</option>
                 <option value=2 >Above Normal</option>
@@ -142,7 +142,7 @@
             </div>
             <div class="form_group">
             <label for="gluc">Glucose:</label>
-            <select name="smoke" id="smoke">
+            <select name="gluc" id="gluc">
                 <option value="">Select</option>
                 <option value=1 >Normal</option>
                 <option value=2 >Above Normal</option>
@@ -179,9 +179,9 @@
         </form>
         <div class="result" id="hideafter30sec">
             {% if prediction_text == '0'%}
-            <h2 style="color:red;">Patience does not have CKD</h2>
+            <h2 style="color:green;">Patience does not have Cardiovascular Disease</h2>
             {% elif prediction_text == '1'%}
-            <h2 style="color:green;"><b>Patience is having CKD</b></h2>
+            <h2 style="color:red;"><b>Patience is having Cardiovascular Disease</b></h2>
             {% endif %}
         </div>
     </div>
