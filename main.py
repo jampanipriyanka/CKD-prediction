@@ -7,22 +7,11 @@ from flask import Flask, jsonify, render_template, request, url_for
 
 app=Flask(__name__)
 
-import warnings
-from warnings import filterwarnings
 
-# import keras
-# from xgboost import XGBClassifier
-import scipy
-# import tensorflow
-from sklearn.feature_selection import \
-    SelectKBest  # Also known as Information Gain
-from sklearn.feature_selection import chi2
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from sklearn.preprocessing import LabelEncoder
-from xgboost import XGBClassifier
-
-XGBClassifier()
+from sklearn.tree import DecisionTreeClassifier
 
 
 
@@ -36,8 +25,7 @@ def home():
 def predict():
     items=request.form.items()
     print(items)
-    x_train_head=['wc', 'bgr', 'bu', 'sc', 'pcv', 'al', 'hemo', 'age', 'su', 'htn']
-    array=['white-blood-cell-count','blood-glucose-random','blood-urea','serum-creatinine','packed-cell-volume','albumin','hemoglobin','age','sugar','hypertension']
+    x_train_head=['age', 'Gender', 'height', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco','active']
     int_feature={key:float(value) for key,value in request.form.items() }
     print(int_feature) 
     trainvalues={x:int_feature[x] for x in x_train_head}

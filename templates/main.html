@@ -13,11 +13,15 @@
            
         }
         .container {
-            margin: 0 auto;
-            max-width: 1200px;
-            padding: 20px;
-            column-count:3;
+            margin: 30px;
+            padding: 25px;
+            column-count: 2;
+            display: block;
+            border: solid;
              
+        }
+        form{
+            border: #4CAF50;
         }
         h1 {
             font-size: 32px;
@@ -91,105 +95,84 @@
     </style>
 </head>
 <body>
-    <h1>Chronic Kidney Disease Prediction</h1>
+    <h1>Cardiovascular Disease Prediction</h1>
     <div class="container">
 
         <form id="form" action="{{ url_for('predict')}}" method="POST">
+            <div class="form_group">
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" required ><br />
-            <label for="age">Age:</label>
+            </div>
+            <div class="form_group">
+            <label for="age">Age in days:</label>
             <input type="text" id="age" name="age" required><br />
-
-            <label for="bp">Blood Pressure:</label>
-            <input type="text" id="bp" name="bp" required><br />
-
-            <label for="sg">Specific Gravity:</label>
-            <input type="text" id="sg" name="sg" required><br />
-            <label for="al">Albumin:</label>
-            <input type="text" id="al" name="al" required><br />
-            <label for="su">Sugar:</label>
-            <input type="text" id="su" name="su" required><br />
-
-            <label for="rbc">Red Blood Cells:</label>
-            <select name="rbc" id="rbc">
+            </div>
+            <div class="form_group">
+            <label for="Gender">Gender:</label>
+            <select id="Gender" name="Gender">
+                <option value="">Select</option>
+                <option value=1 >Male</option>
+                <option value=2 >Female</option>
+            </select><br />
+            </div>
+            <div class="form_group">
+            <label for="height">Height in cm:</label>
+            <input type="text" id="height" name="height" required><br />
+            </div>
+            <div class="form_group">
+            <label for="weight">Weight in kg:</label>
+            <input type="text" id="weight" name="weight" required><br />
+            </div>
+            <div class="form_group">
+            <label for="ap_hi">Ap_hi:</label>
+            <input type="text" id="ap_hi" name="ap_hi" required><br />
+            </div>
+            <div class="form_group">
+            <label for="ap_lo">ap_lo:</label>
+            <input type="text" id="ap_lo" name="ap_lo" required><br />
+            </div>
+            <div class="form_group">
+            <label for="cholesterol">cholesterol:</label>
+            <select name="smoke" id="smoke">
                 <option value="">Select</option>
                 <option value=1 >Normal</option>
-                <option value=0 >Abnormal</option>
+                <option value=2 >Above Normal</option>
+                <option value=3 >Well Above Normal</option>
             </select><br />
-            <label for="pc">Pus Cell:</label>
-            <select name="pc" id="pc">
+            </div>
+            <div class="form_group">
+            <label for="gluc">Glucose:</label>
+            <select name="smoke" id="smoke">
                 <option value="">Select</option>
                 <option value=1 >Normal</option>
-                <option value=0 >Abnormal</option>
+                <option value=2 >Above Normal</option>
+                <option value=3 >Well Above Normal</option>
             </select><br />
-
-            <label for="pcc">Pus Cell Clumps:</label>
-            <select name="pcc" id="pcc">
+            </div>
+            <div class="form_group">
+            <label for="smoke">Smoke:</label>
+            <select name="smoke" id="smoke">
                 <option value="">Select</option>
-                <option value=1 >Present</option>
-                <option value=0 >Not Present</option>
-            </select><br />
-            <label for="ba">Bacteria:</label>
-            <select name="ba" id="ba">
-                <option value="">Select</option>
-                <option value=1 >Present</option>
-                <option value=0 >Not Present</option>
-            </select><br />
-            <label for="bgr">Blood Glucose Random:</label>
-            <input type="text" id="bgr" name="bgr" required><br />
-
-            <label for="bu">Blood Urea:</label>
-            <input type="text" id="bu" name="bu" required><br />
-
-            <label for="sc">Serium Creatinine:</label>
-            <input type="text" id="sc" name="sc" required><br />
-            <label for="sod">Sodium:</label>
-            <input type="text" id="sod" name="sod" required><br />
-            <label for="pot">Potassium:</label>
-            <input type="text" id="pot" name="pot" required><br />
-
-            <label for="hemo">Hemo Globin:</label>
-            <input type="text" id="hemo" name="hemo" required><br />
-
-            <label for="ane">Anemia:</label>
-            <input type="text" id="ane" name="ane" required><br />
-            <label for="pcv">Packed Cell Volume:</label>
-            <input type="text" id="pcv" name="pcv" required><br />
-            <label for="wc">White Blood Cell Count:</label>
-            <input type="text" id="wc" name="wc" required><br />
-            <label for="rc">Red Blood Cell Count:</label>
-            <input type="text" id="rc" name="rc" required><br />
-            <label for="htn">Hypertension:</label>
-            <select name="htn" id="htn">
-                <option value="">Select</option>
-                <option value=1 >Present</option>
-                <option value=0 >Not Present</option>
-            </select><br />
-            <label for="dm">Diabetes Mellitus:</label>
-            <select name="dm" id="dm">
-                <option value="">Select</option>
-                <option value=1 >Present</option>
-                <option value=0 >Not Present</option>
-            </select><br />
-            <label for="cad">Coronary Artery Diseases:</label>
-            <select name="cad" id="cad">
-                <option value="">Select</option>
-                <option value=1 >Present</option>
-                <option value=0 >Not Present</option>
-            </select><br />
-            <label for="appet">Appetite:</label>
-            <select name="appet" id="appet">
-                <option value="">Select</option>
-                <option value=1 >Good</option>
-                <option value=0 >Poor</option>
-            </select><br />
-            <label for="pe">Pedal Edema:</label>
-            <select name="pe" id="pe">
-                <option value="">Select</option>
-                <option value=1 >Yes</option>
+                <option value=1 >yes</option>
                 <option value=0 >No</option>
             </select><br />
-
+            </div>
+            <div class="form_group">
+            <label for="alco">Alcohol:</label>
+            <select name="alco" id="alco">
+                <option value="">Select</option>
+                <option value=1 >yes</option>
+                <option value=0 >No</option>
+            </select><br />
+            </div>
+            <div class="form_group">
+            <label for="active">Active:</label>
+            <select name="active" id="active">
+                <option value="">Select</option>
+                <option value=1 >yes</option>
+                <option value=0 >No</option>
+            </select><br />
+            </div>
             <button type="submit" id="submit-btn">Predict</button><br/>
 
            
